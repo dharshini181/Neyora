@@ -34,7 +34,7 @@ function Row({ item }: { item: InventoryItem }) {
       <div className="flex items-center gap-2">
         <button
           disabled={pending}
-          onClick={() => startTransition(() => adjustInventoryQuantity(item.id, -1))}
+          onClick={() => startTransition(() => { adjustInventoryQuantity(item.id, -1); })}
           className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-secondary hover:border-primary/40 hover:text-primary"
         >
           <Minus size={12} />
@@ -44,7 +44,7 @@ function Row({ item }: { item: InventoryItem }) {
         </span>
         <button
           disabled={pending}
-          onClick={() => startTransition(() => adjustInventoryQuantity(item.id, 1))}
+          onClick={() => startTransition(() => { adjustInventoryQuantity(item.id, 1); })}
           className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-secondary hover:border-primary/40 hover:text-primary"
         >
           <Plus size={12} />

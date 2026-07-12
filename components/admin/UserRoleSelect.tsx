@@ -12,7 +12,7 @@ export default function UserRoleSelect({ userId, role }: { userId: string; role:
       <select
         defaultValue={role}
         disabled={pending}
-        onChange={(e) => startTransition(() => updateUserRole(userId, e.target.value))}
+        onChange={(e) => startTransition(() => { updateUserRole(userId, e.target.value); })}
         className="rounded-full border border-primary/20 bg-card px-3 py-1.5 text-xs capitalize outline-none"
       >
         <option value="owner">Owner</option>

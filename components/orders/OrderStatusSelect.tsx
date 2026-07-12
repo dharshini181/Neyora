@@ -37,7 +37,7 @@ export default function OrderStatusSelect({ orderId, status }: { orderId: string
       <select
         defaultValue={status}
         disabled={pending}
-        onChange={(e) => startTransition(() => updateOrderStatus(orderId, e.target.value))}
+        onChange={(e) => startTransition(() => { updateOrderStatus(orderId, e.target.value); })}
         className={`rounded-full border bg-card px-3 py-1.5 text-xs outline-none ${statusStyle[status]}`}
       >
         {orderStatuses.map((s) => (
