@@ -1,10 +1,6 @@
-import { cookies } from "next/headers";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { cookies } from "next/headers";
 
-/**
- * Server-side Supabase client for use in Server Components, Server Actions,
- * and Route Handlers. Reads/writes the auth cookie via next/headers.
- */
 export async function createClient() {
   const cookieStore = await cookies();
 
@@ -16,14 +12,14 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+
+        setAll(cookiesToSet: any[]) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
               cookieStore.set(name, value, options as CookieOptions);
             });
           } catch {
-            // Called from a Server Component during render — safe to ignore
-            // because the middleware refreshes the session on every request.
+            // Ignore if called from a Server Component.
           }
         },
       },
