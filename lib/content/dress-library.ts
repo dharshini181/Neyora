@@ -1,5 +1,9 @@
-export type SilhouetteShape = "aline" | "straight" | "fitted" | "flared" | "twopiece" | "tunic";
-
+export type SilhouetteShape =
+  | "straight"
+  | "fitted"
+  | "flared"
+  | "twopiece"
+  | "tunic";
 export type DressLibraryEntry = {
   slug: string;
   name: string;
