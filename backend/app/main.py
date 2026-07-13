@@ -14,7 +14,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "https://neyora-ai.vercel.app/").split(",")
 
 app.add_middleware(
     CORSMiddleware,
