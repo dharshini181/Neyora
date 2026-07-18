@@ -1,20 +1,16 @@
-import { getCustomers } from "@/lib/data/customers";
-import { getDressTypes } from "@/lib/data/patterns";
-import PatternGeneratorForm from "@/components/patterns/PatternGeneratorForm";
+import ChatWindow from "@/components/ai/ChatWindow";
+import { BilingualHeading, BilingualText } from "@/components/i18n/Bilingual";
 
-export default async function NewPatternPage() {
-  const [customers, dressTypes] = await Promise.all([getCustomers(), getDressTypes()]);
+export const maxDuration = 60;
 
+export default function AiChatPage() {
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="font-display text-2xl font-semibold">Generate Pattern</h1>
-        <p className="text-sm text-secondary">
-          Pick a customer, a saved measurement set, and a dress type — the Pattern Rule Engine
-          does the drafting math.
-        </p>
+      <div className="mb-6">
+        <BilingualHeading translationKey="aiChatTitle" />
+        <BilingualText translationKey="aiChatSubtitle" />
       </div>
-      <PatternGeneratorForm customers={customers} dressTypes={dressTypes} />
+      <ChatWindow />
     </div>
   );
 }

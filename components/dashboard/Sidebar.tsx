@@ -76,10 +76,11 @@ function NavLink({
   );
 }
 
-export default function Sidebar() {
+export default function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
   const pathname = usePathname();
   const { mobileSidebarOpen, setMobileSidebarOpen } = useUIStore();
   const { t } = useTranslation();
+  const visibleBottomNav = bottomNav.filter((item) => item.href !== "/admin" || isAdmin);
 
   const content = (
     <>
@@ -106,7 +107,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="space-y-1 border-t border-primary/10 px-3 py-4">
-        {bottomNav.map((item) => (
+        {visibleBottomNav.map((item) => (
           <NavLink key={item.href} item={item} active={pathname === item.href} label={t(item.labelKey)} />
         ))}
       </div>

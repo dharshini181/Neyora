@@ -81,28 +81,37 @@ export default function HeroIllustration() {
 
       {/* Safety pin — top center-right */}
       <FloatItem style={{ top: "16%", right: "22%" }} duration={9}>
-        <svg viewBox="0 0 60 40" className="h-8 w-12 text-primary">
-          <path d="M6 30 Q0 20 8 12 Q16 5 24 12 L50 30" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <circle cx="52" cy="32" r="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
-          <line x1="6" y1="30" x2="14" y2="24" stroke="currentColor" strokeWidth="1.8" />
+        <svg viewBox="0 0 70 45" className="h-9 w-14 text-primary">
+          {/* coiled spring end */}
+          <circle cx="10" cy="32" r="4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <circle cx="15" cy="29" r="4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          {/* pin shaft */}
+          <path d="M17 27 Q35 6 55 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          {/* clasp cap catching the point */}
+          <path d="M55 8 Q64 8 64 15 Q64 22 55 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </FloatItem>
 
       {/* Sewing machine — lower right */}
       <FloatItem style={{ bottom: "4%", right: "0%" }} duration={7.5}>
-        <svg viewBox="0 0 120 80" className="h-20 w-28 text-primary">
+        <svg viewBox="0 0 140 90" className="h-20 w-28 text-primary">
+          {/* base / platform */}
+          <rect x="8" y="68" width="120" height="8" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          {/* body: post + arm + head, classic C-silhouette */}
           <path
-            d="M10 68 L10 55 Q10 48 18 48 L34 48 Q34 30 55 22 Q66 18 78 20 L100 24
-               Q108 26 108 34 L108 48 L114 48 L114 58 L108 58 L108 68 Z"
+            d="M28 68 L28 28 Q28 16 40 16 L88 16 Q104 16 104 32 L104 58"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.6"
+            strokeWidth="1.8"
+            strokeLinecap="round"
           />
-          <line x1="78" y1="20" x2="78" y2="48" stroke="currentColor" strokeWidth="1.6" />
-          <line x1="78" y1="48" x2="86" y2="48" stroke="currentColor" strokeWidth="1.6" />
-          <line x1="86" y1="48" x2="86" y2="60" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <circle cx="94" cy="30" r="4" fill="none" stroke="currentColor" strokeWidth="1.4" />
-          <line x1="10" y1="68" x2="114" y2="68" stroke="currentColor" strokeWidth="1.8" />
+          {/* needle */}
+          <line x1="104" y1="58" x2="104" y2="70" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          {/* spool pin on top */}
+          <line x1="40" y1="16" x2="40" y2="6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          <circle cx="40" cy="4" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+          {/* hand wheel on the side */}
+          <circle cx="30" cy="42" r="6" fill="none" stroke="currentColor" strokeWidth="1.4" />
         </svg>
       </FloatItem>
 

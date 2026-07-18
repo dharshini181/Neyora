@@ -6,6 +6,8 @@ import { Upload, Loader2, Sparkles, ExternalLink } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 import GlowButton from "@/components/ui/GlowButton";
 import { detectDressFromImage, type DressDetectionResult } from "@/lib/actions/ai";
+import { useTranslation } from "@/lib/i18n/useTranslation";
+import { BilingualText } from "@/components/i18n/Bilingual";
 
 function fileToBase64(file: File): Promise<{ base64: string; mimeType: string }> {
   return new Promise((resolve, reject) => {
@@ -21,6 +23,7 @@ function fileToBase64(file: File): Promise<{ base64: string; mimeType: string }>
 }
 
 export default function DressDetectionUpload() {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -48,7 +51,9 @@ export default function DressDetectionUpload() {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       <GlassCard>
-        <h2 className="mb-4 text-sm font-medium text-white/80">Upload a Dress Photo</h2>
+        <div className="mb-4">
+          <BilingualText translationKey="uploadDressPhoto" className="text-sm font-medium text-white/80" />
+        </div>
         <div
           onClick={() => inputRef.current?.click()}
           onDragOver={(e) => e.preventDefault()}
@@ -65,8 +70,8 @@ export default function DressDetectionUpload() {
           ) : (
             <>
               <Upload size={28} className="mb-3 text-primary" />
-              <p className="text-sm text-secondary">Click to upload or drag & drop</p>
-              <p className="mt-1 text-xs text-secondary/60">JPG or PNG, up to 5MB</p>
+              <p className="text-sm text-secondary">{t("clickToUpload")}</p>
+              <p className="mt-1 text-xs text-secondary/60">{t("jpgPngLimit")}</p>
             </>
           )}
         </div>
@@ -82,15 +87,16 @@ export default function DressDetectionUpload() {
             onClick={() => inputRef.current?.click()}
             className="mt-3 text-xs text-primary hover:underline"
           >
-            Upload a different photo
+            {t("uploadDifferentPhoto")}
           </button>
         )}
       </GlassCard>
 
       <GlassCard>
-        <h2 className="mb-4 flex items-center gap-2 text-sm font-medium text-white/80">
-          <Sparkles size={15} className="text-primary" /> AI Analysis
-        </h2>
+        <div className="mb-4 flex items-center gap-2">
+          <Sparkles size={15} className="text-primary" />
+          <BilingualText translationKey="aiAnalysis" className="text-sm font-medium text-white/80" />
+        </div>
 
         {loading && (
           <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -115,20 +121,20 @@ export default function DressDetectionUpload() {
         {!loading && result && (
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <Field label="Dress Type" value={result.dressType} />
-              <Field label="Sleeve Style" value={result.sleeveStyle} />
-              <Field label="Neckline" value={result.neckStyle} />
+              <Field label={t("dressTypeLabel")} value={result.dressType} />
+              <Field label={t("sleeveStyleLabel")} value={result.sleeveStyle} />
+              <Field label={t("necklineLabel")} value={result.neckStyle} />
             </div>
             {result.fabricSuggestion && (
               <div className="rounded-xl bg-white/[0.03] px-4 py-3">
-                <p className="mb-1 text-xs text-secondary">Fabric Suggestion</p>
+                <p className="mb-1 text-xs text-secondary">{t("fabricSuggestionLabel")}</p>
                 <p className="text-sm">{result.fabricSuggestion}</p>
               </div>
             )}
 
             {(result.matchedDressSlug || result.matchedNeck || result.matchedSleeve) && (
               <div>
-                <p className="mb-2 text-xs text-secondary">Similar patterns in your library</p>
+                <p className="mb-2 text-xs text-secondary">{t("similarPatterns")}</p>
                 <div className="flex flex-wrap gap-2">
                   {result.matchedDressSlug && (
                     <Link

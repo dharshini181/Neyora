@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Mic, MicOff, Loader2 } from "lucide-react";
 import { parseMeasurementTranscript, type ParsedMeasurements } from "@/lib/voice/parse-measurements";
+import { useTranslation } from "@/lib/i18n/useTranslation";
 
 // The Web Speech API isn't in TypeScript's default DOM lib — declare the
 // minimal shape we use rather than pulling in a whole ambient types package.
@@ -28,6 +29,7 @@ export default function VoiceInputButton({
 }: {
   onParsed: (values: ParsedMeasurements, matchedFields: string[]) => void;
 }) {
+  const { t } = useTranslation();
   const [supported, setSupported] = useState(true);
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState("");
@@ -81,7 +83,7 @@ export default function VoiceInputButton({
         title="Voice input needs Chrome or Edge (the Web Speech API isn't available in this browser)."
         className="flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-xs text-secondary opacity-50"
       >
-        <MicOff size={14} /> Voice Input
+        <MicOff size={14} /> {t("voiceInputLabel")}
       </button>
     );
   }
@@ -98,7 +100,7 @@ export default function VoiceInputButton({
         }`}
       >
         {listening ? <Loader2 size={14} className="animate-spin" /> : <Mic size={14} />}
-        {listening ? "Listening..." : "Voice Input"}
+        {listening ? t("listeningLabel") : t("voiceInputLabel")}
       </button>
       {transcript && <p className="max-w-[220px] text-right text-[11px] text-secondary">"{transcript}"</p>}
     </div>

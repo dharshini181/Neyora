@@ -5,6 +5,7 @@ import { Send, Loader2, Sparkles, Bot, User } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 import { sendChatMessage } from "@/lib/actions/ai";
 import type { ChatTurn } from "@/lib/gemini/client";
+import { useTranslation } from "@/lib/i18n/useTranslation";
 
 const SUGGESTIONS = [
   "How do I stitch a princess-cut blouse?",
@@ -14,6 +15,7 @@ const SUGGESTIONS = [
 ];
 
 export default function ChatWindow() {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<ChatTurn[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -115,7 +117,7 @@ export default function ChatWindow() {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask about stitching, fabric, or measurements..."
+          placeholder={t("chatPlaceholder")}
           className="flex-1 rounded-full border border-primary/15 bg-card px-4 py-2.5 text-sm outline-none placeholder:text-secondary/60 focus:border-primary/50"
         />
         <button
